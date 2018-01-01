@@ -26,8 +26,13 @@
 * i get 99.3 on validation using more deeper network+ batch normalization +  using YUV (Y channel) instead of grayscale image + cv2.Histogram for contrast problem + data augment
 * Another things that is really helpful with this data set is histogram equalization to improve the value range and detail of many of the images (locally adaptive equalization works better than global).
 
-* Hi! I've found them next way: just found a video on youTube with title "driving Berlin" and made some screenshots. The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
-
+* Found a video on youTube with title "driving Berlin" and made some screenshots
+  * The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
+  * *Driving through Berlin* https://www.youtube.com/watch?v=3SQe2xlHEiU
+  * *Driving in Berlin Streets, Germany* https://www.youtube.com/watch?v=FllWycSZKpk
+  * *Driving through... Berlin!* https://www.youtube.com/watch?v=JlASX8L04hI
+  * *Driving Through (München) Munich Germany* https://www.youtube.com/watch?v=2LXwr2bRNic
+  * https://www.howtogermany.com/images/roadsigns1.jpg
 ---
 
 **Build a Traffic Sign Recognition Project**
