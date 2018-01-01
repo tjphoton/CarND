@@ -4,6 +4,30 @@
 
 ### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
+### Improve Model
+* Add regularization features
+  * L2 regularization
+  * drop out regularization
+* Pre-process Data
+  * normalization and setting zero mean
+* Argument training data
+  * rotate or shift image
+  * change color
+* Tune hyperparameters
+  * 128 batch size with 50 epochs 
+* -Play around with Leaky ReLUs, PReLUs and Batch Normalization-
+* -Learning rate with decay and a large momentum -
+  * increase your learning rate by a factor of 10 to 100
+  * use a high momentum value of 0.9 or 0.99
+* Experiment different network architectures
+* Change dimentions of LeNet layers
+
+* Change optimizer, activation functions... try deeper and more recent networks than lenet, watch training and early stopping could be nice thing to do... you may want to try dropout too and if you happen to have a nice gpu and ram sources increasing batch size also helps
+* i get 99.3 on validation using more deeper network+ batch normalization +  using YUV (Y channel) instead of grayscale image + cv2.Histogram for contrast problem + data augment
+* Another things that is really helpful with this data set is histogram equalization to improve the value range and detail of many of the images (locally adaptive equalization works better than global).
+
+* Hi! I've found them next way: just found a video on youTube with title "driving Berlin" and made some screenshots. The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
+
 ---
 
 **Build a Traffic Sign Recognition Project**
