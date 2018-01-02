@@ -8,10 +8,6 @@
 * Add regularization features
   * drop out regularization
   * L2 regularization
-* Batch normalisation
-  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
-* Change activation functions, play around with Leaky ReLUs, PReLUs
-* Change optimizer
 * Pre-process Data
   * normalization and setting zero mean
   * histogram equalization
@@ -23,16 +19,20 @@
   * Augmentor is an image augmentation library  https://github.com/mdbloice/Augmentor
   * rotate or shift image
   * change color
+
+* Batch normalisation
+  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
+* Change activation functions, play around with Leaky ReLUs, PReLUs
+* Change optimizer
 * Tune hyperparameters
   * 128 batch size with 50 epochs
   * increasing batch size also helps
 * Learning rate with decay and a large momentum -
   * increase your learning rate by a factor of 10 to 100
   * use a high momentum value of 0.9 or 0.99
-* x Experiment different network architectures
+* Experiment different network architectures
   * try deeper and more recent networks than lenet
-* x Change dimentions of LeNet layers
-* Watch training and early stopping
+* Change dimentions of LeNet layers
 * i get 99.3 on validation using 
   * more deeper network + 
   * batch normalization +  
