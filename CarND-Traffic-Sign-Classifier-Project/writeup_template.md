@@ -6,25 +6,39 @@
 
 ### Improve Model
 * Add regularization features
-  * L2 regularization
   * drop out regularization
+  * L2 regularization
+* Batch normalisation
+  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
+* Change activation functions, play around with Leaky ReLUs, PReLUs
+* Change optimizer
 * Pre-process Data
   * normalization and setting zero mean
+  * histogram equalization
+    * improve the value range and detail of many of the images 
+    * locally adaptive equalization works better than global
+    * Histogram equalization https://en.wikipedia.org/wiki/Histogram_equalization
+    * scikit-image Local Histogram Equalization http://scikit-image.org/docs/dev/auto_examples/color_exposure/plot_local_equalize.html
 * Argument training data
+  * Augmentor is an image augmentation library  https://github.com/mdbloice/Augmentor
   * rotate or shift image
   * change color
 * Tune hyperparameters
-  * 128 batch size with 50 epochs 
-* -Play around with Leaky ReLUs, PReLUs and Batch Normalization-
-* -Learning rate with decay and a large momentum -
+  * 128 batch size with 50 epochs
+  * increasing batch size also helps
+* Learning rate with decay and a large momentum -
   * increase your learning rate by a factor of 10 to 100
   * use a high momentum value of 0.9 or 0.99
-* Experiment different network architectures
-* Change dimentions of LeNet layers
-
-* Change optimizer, activation functions... try deeper and more recent networks than lenet, watch training and early stopping could be nice thing to do... you may want to try dropout too and if you happen to have a nice gpu and ram sources increasing batch size also helps
-* i get 99.3 on validation using more deeper network+ batch normalization +  using YUV (Y channel) instead of grayscale image + cv2.Histogram for contrast problem + data augment
-* Another things that is really helpful with this data set is histogram equalization to improve the value range and detail of many of the images (locally adaptive equalization works better than global).
+* x Experiment different network architectures
+  * try deeper and more recent networks than lenet
+* x Change dimentions of LeNet layers
+* Watch training and early stopping
+* i get 99.3 on validation using 
+  * more deeper network + 
+  * batch normalization +  
+  * using YUV (Y channel) instead of grayscale image + 
+  * cv2.Histogram for contrast problem + 
+  * data augment
 
 * Found a video on youTube with title "driving Berlin" and made some screenshots
   * The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
