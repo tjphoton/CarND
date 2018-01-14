@@ -14,9 +14,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./figs/6_label_distribution.png "Distribution"
-[image2]: ./figs/7_argumentation "Argumentation"
-[image3]: ./figs/6_label_distribution_2 "New Distribution"
-[image4]: ./figs/LeNet-5 "LeNet"
+[image2]: ./figs/7_argumentation.png "Argumentation"
+[image3]: ./figs/6_label_distribution_2.png "New Distribution"
+[image4]: ./figs/LeNet-5.png "LeNet"
 
 
 [image2]: ./examples/grayscale.jpg "Grayscaling"
@@ -30,9 +30,8 @@ The goals / steps of this project are the following:
 ---
 ### Writeup and Code
 
-* Link to the [project code](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Classifier.ipynb)
-* Link to the [writeup](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Recognition.md)
-
+* Link to the [project code](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier.ipynb)
+* Link to the [writeup](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Recognition.md)
 
 ### Data Set Summary & Exploration
 
