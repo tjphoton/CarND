@@ -13,7 +13,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./figs/6_label_distribution.png "Visualization"
+[image1]: ./figs/6_label_distribution.png "Distribution"
+[image2]: ./figs/7_argumentation "Argumentation"
+[image3]: ./figs/6_label_distribution_2 "New Distribution"
+[image4]: ./figs/LeNet-5 "LeNet"
+
+
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
@@ -25,8 +30,8 @@ The goals / steps of this project are the following:
 ---
 ### Writeup and Code
 
-Link to the [project code](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Classifier.ipynb)
-Link to the [writeup](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Recognition.md)
+* Link to the [project code](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Classifier.ipynb)
+* Link to the [writeup](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Recognition.md)
 
 
 ### Data Set Summary & Exploration
@@ -44,35 +49,62 @@ Pandas library is used to calculate summary statistics of the traffic signs data
 #### 2. Exploratory visualization of the dataset
 
 Below is a histogram chart showing how the number of training data set labels are distributed. 
-It's clear the data sampling distribution is uneven among diffrent traffic signs, which will affect 
-the accuracy for these under-sampled signs.
+The x axis shows the sign label, while the height of each bin shows the number of images for each label. 
+It's clear the data sampling distribution is uneven among diffrent traffic signs, with the largest number 
+is roughly 10 times larger than the smallest one. This non-uniform distribution will affect the accuracy 
+for these under-sampled signs.
 
 ![distribution of traffic sign labels][image1]
 
 ### Design and Test a Model Architecture
 
-#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### 1. Image data preprocess
 
-As a first step, I decided to convert the images to grayscale because ...
+<!-- 
+Describe how you preprocessed the image data. 
+What techniques were chosen and why did you choose these techniques? 
+Consider including images showing the output of each preprocessing technique. 
+Pre-processing refers to techniques such as converting to grayscale, normalization, etc. 
+(OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, 
+if you generated additional data for training, describe why you decided to generate additional data, 
+how you generated the data, and provide example images of the additional data. 
+Then describe the characteristics of the augmented training set like number of images in the set, 
+number of images for each class, etc.)
+ -->
 
-Here is an example of a traffic sign image before and after grayscaling.
+Since the traffic sign in the training data distribution is highly non-uniform, under-sampled image 
+data need to be added to avoid loss in accuracy. One way to add more data to the under-sampled data 
+is to collect more. Another way to do is use the argumentation technique.
 
-![alt text][image2]
+Python package [Augmentor](http://augmentor.readthedocs.io/en/master/) is used to artificially generate image data
+with operations like rotate, flip, zoom. Here is a few examples of augmented Stop Sign images:
 
-As a last step, I normalized the image data because ...
+![Data argumentation][image2]
 
-I decided to generate additional data because ... 
+With image data argumented, data sample size is increased from 34,799 for the original data set 
+to 91,736 for the augmented data set. Roughly a factor of 3 increase in the number of images. 
+The numbers of different traffic signs are more evenly distributed, as seen below:
 
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
+![distribution of argumented traffic sign labels][image3]
 
 
-#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+In a last step, image data is normalized with the code below to rescale pixel value  from [0, 256] to [-1, 1]. 
+The intention of this image intensity rescaling is to make sure in the neural network training stage, 
+the gradient descent converges much faster than the data that is not normalized.
+
+```
+(np.array(image).astype(float)-128)/128.
+```    
+
+#### 2. Final model architecture
+
+<!-- 
+looks like including model type, layers, layer sizes, connectivity, etc.) 
+Consider including a diagram and/or table describing the final model.
+ -->
+
+![LeNet-5 Architecture][image4]
+
 
 My final model consisted of the following layers:
 
