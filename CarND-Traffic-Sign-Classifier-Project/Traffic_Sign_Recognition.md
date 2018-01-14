@@ -1,7 +1,6 @@
 # **Traffic Sign Recognition Project** 
 
 [//]: # (Image References)
-
 [image1]: ./figs/1_all_traffic_signs.png "All signs"
 [image2]: ./figs/6_label_distribution.png "Distribution"
 [image3]: ./figs/7_argumentation.png "Argumentation"
@@ -24,12 +23,12 @@
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
  -->
 
----
 ### Writeup and Code
 
 * Link to the [project code](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier.ipynb)
 * Link to the [writeup](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Recognition.md)
 
+---
 ### Data Set Summary & Exploration
 
 #### 1. Basic summary of the data set
@@ -103,6 +102,7 @@ for these under-sampled signs.
 
 ![distribution of traffic sign labels][image2]
 
+---
 ### Design and Test a Model Architecture
 
 #### 1. Image data preprocess
@@ -172,23 +172,24 @@ Training was repeated with 50 epochs.
 #### 4. Approach to find a solution
 With the choice of LeNet, the initial accuracy on the validation data is about 84%. With image data normalization,
 the validation accuracy improves to ~90%. 
+
 ![LeNet Accuracy][image6]
 
-Even though the accuracy on the training set is high (surpasses 99% after just 10 epochs),  but the validation 
-data set accuracy is low, indicating overfitting.
+Even though the accuracy on the training set is high (surpasses 99.8% after 20 epochs),  but the validation 
+data set accuracy is relatively low (91.8%), indicating overfitting.
 
 Overfitting can be solved in a few ways, one is to add more data to make the model recognized more images in the 
 hope to make it more make more generalized decision. We have already used the argumentation technique mentioned above to achieve this.
 Another way is to apply regularization. After apply dropout regularization on each convolution and fully connected layers 
-(not on the final output layer) with keep_prob = 0.6, the validation accuracy improves to more than 95%.
+(not on the final output layer) with keep_prob = 0.6, the validation accuracy improves to more than 97.0%.
 
 The other technique that were tried but did not immediately seem to improve the accuracy includes: 
 histogram equalization, batch normalization, L2 regularization.
 
 My final model results were:
 * training set accuracy of 99.3%
-* validation set accuracy of 95.6%
-* test set accuracy of 94.2% 
+* validation set accuracy of 96.0%
+* test set accuracy of 95.0% 
 
 ![Improved Accuracy][image7]
 
@@ -201,6 +202,7 @@ It time permits in the future, I would like to try the following techniques to s
 * Change dimentions of LeNet layers, or 
 * Different deeper network architectures
 
+---
 ### Test a Model on New Images
 
 #### 1. German traffic signs found on the web 
@@ -226,16 +228,31 @@ Here are 20 German traffic signs that I captured with this method:
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Image			        |     Prediction	 			|    Accuracy    |
+|:---------------------:|:-----------------------------:|:--------------:|
+|  Keep right 			|   Keep right                  | <span style="color:green"> ✓ </span> |
+|  General caution  	|   General caution             | <span style="color:red"> ✘ </span> |
+|  Priority road  		|   Priority road             |  
+|  Turn left ahead  	|   Turn left ahead             |
+|  Speed limit (30km/h) |   Speed limit (30km/h)             |
+|  Children crossing  	|   Children crossing             |
+|  Speed limit (30km/h) |   Speed limit (30km/h)             |
+|  Priority road  		|   Priority road             |
+|  Yield  				|   Yield             |
+|  Roundabout mandatory |   Roundabout mandatory             |
+|  No vehicles  		|   No vehicles             |
+|  Yield  				|   Yield             |
+|  Roundabout mandatory |   Roundabout mandatory             |
+|  Turn left ahead  	|   Turn left ahead             |
+|  Go straight or right |   Go straight or right             |
+|  Ahead only  			|   Ahead only             |
+|  Stop  				|   Stop             |
+|  Right-of-way at the next intersection  |   Right-of-way at the next intersection
+|  No entry  			|   No entry             |
+|  Bicycles crossing    |   Bicycles crossing             |
 
 
-The model was able to correctly guess 14 of the 20 traffic signs, which gives an accuracy of 70%. 
+The model was able to correctly guess 15 of the 20 traffic signs, which gives an accuracy of 75%. 
 This compares worse to the accuracy on the test set of 94.2%.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
@@ -257,42 +274,5 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 
 For the second image ... 
-
-
-### Improve Model
-* Add regularization features
-  * drop out regularization
-  * L2 regularization
-* Pre-process Data
-  * normalization and setting zero mean
-  * histogram equalization
-    * improve the value range and detail of many of the images 
-    * locally adaptive equalization works better than global
-    * Histogram equalization https://en.wikipedia.org/wiki/Histogram_equalization
-    * scikit-image Local Histogram Equalization http://scikit-image.org/docs/dev/auto_examples/color_exposure/plot_local_equalize.html
-* Argument training data
-  * Augmentor is an image augmentation library  https://github.com/mdbloice/Augmentor
-  * rotate or shift image
-  * change color
-
-* Batch normalisation
-  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
-* Change activation functions, play around with Leaky ReLUs, PReLUs
-* Change optimizer
-* Tune hyperparameters
-  * 128 batch size with 50 epochs
-  * increasing batch size also helps
-* Learning rate with decay and a large momentum -
-  * increase your learning rate by a factor of 10 to 100
-  * use a high momentum value of 0.9 or 0.99
-* Experiment different network architectures
-  * try deeper and more recent networks than lenet
-* Change dimentions of LeNet layers
-* i get 99.3 on validation using 
-  * more deeper network + 
-  * batch normalization +  
-  * using YUV (Y channel) instead of grayscale image + 
-  * cv2.Histogram for contrast problem + 
-  * data augment
 
 
