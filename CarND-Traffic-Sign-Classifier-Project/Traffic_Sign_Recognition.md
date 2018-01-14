@@ -1,52 +1,6 @@
-# **Traffic Sign Recognition** 
+# **Traffic Sign Recognition Project** 
 
-## Writeup
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
-### Improve Model
-* Add regularization features
-  * drop out regularization
-  * L2 regularization
-* Pre-process Data
-  * normalization and setting zero mean
-  * histogram equalization
-    * improve the value range and detail of many of the images 
-    * locally adaptive equalization works better than global
-    * Histogram equalization https://en.wikipedia.org/wiki/Histogram_equalization
-    * scikit-image Local Histogram Equalization http://scikit-image.org/docs/dev/auto_examples/color_exposure/plot_local_equalize.html
-* Argument training data
-  * Augmentor is an image augmentation library  https://github.com/mdbloice/Augmentor
-  * rotate or shift image
-  * change color
-
-* Batch normalisation
-  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
-* Change activation functions, play around with Leaky ReLUs, PReLUs
-* Change optimizer
-* Tune hyperparameters
-  * 128 batch size with 50 epochs
-  * increasing batch size also helps
-* Learning rate with decay and a large momentum -
-  * increase your learning rate by a factor of 10 to 100
-  * use a high momentum value of 0.9 or 0.99
-* Experiment different network architectures
-  * try deeper and more recent networks than lenet
-* Change dimentions of LeNet layers
-* i get 99.3 on validation using 
-  * more deeper network + 
-  * batch normalization +  
-  * using YUV (Y channel) instead of grayscale image + 
-  * cv2.Histogram for contrast problem + 
-  * data augment
-
-* Found a video on youTube with title "driving Berlin" and made some screenshots
-  * The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
-  * *Driving through Berlin* https://www.youtube.com/watch?v=3SQe2xlHEiU
-  * *Driving in Berlin Streets, Germany* https://www.youtube.com/watch?v=FllWycSZKpk
-  * *Driving through... Berlin!* https://www.youtube.com/watch?v=JlASX8L04hI
-  * *Driving Through (München) Munich Germany* https://www.youtube.com/watch?v=2LXwr2bRNic
-  * https://www.howtogermany.com/images/roadsigns1.jpg
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -62,7 +16,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
+[image1]: ./fig/6_label_distribution.png "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
@@ -71,34 +25,32 @@ The goals / steps of this project are the following:
 [image7]: ./examples/placeholder.png "Traffic Sign 4"
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
 
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
-
 ---
-### Writeup / README
+### Writeup and Code
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+Link to the [project code](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Classifier.ipynb)
+Link to the [writeup](https://github.com/tjphoton/CarND/blob/master/Traffic_Sign_Recognition.md)
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
-#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+#### 1. Basic summary of the data set
 
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
+Pandas library is used to calculate summary statistics of the traffic signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 34799
+* The size of the validation set is 4410
+* The size of test set is 12630
+* The shape of a traffic sign image is (32, 32)
+* The number of unique classes/labels in the data set is 43
 
-#### 2. Include an exploratory visualization of the dataset.
+#### 2. Exploratory visualization of the dataset
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Below is a histogram chart showing how the number of training data set labels are distributed. 
+It's clear the data sampling distribution is uneven among diffrent traffic signs, which will affect 
+the accuracy for these under-sampled signs.
 
-![alt text][image1]
+![distribution of traffic sign labels][image1]
 
 ### Design and Test a Model Architecture
 
@@ -211,4 +163,52 @@ For the second image ...
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
+
+## Writeup
+
+### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+
+### Improve Model
+* Add regularization features
+  * drop out regularization
+  * L2 regularization
+* Pre-process Data
+  * normalization and setting zero mean
+  * histogram equalization
+    * improve the value range and detail of many of the images 
+    * locally adaptive equalization works better than global
+    * Histogram equalization https://en.wikipedia.org/wiki/Histogram_equalization
+    * scikit-image Local Histogram Equalization http://scikit-image.org/docs/dev/auto_examples/color_exposure/plot_local_equalize.html
+* Argument training data
+  * Augmentor is an image augmentation library  https://github.com/mdbloice/Augmentor
+  * rotate or shift image
+  * change color
+
+* Batch normalisation
+  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
+* Change activation functions, play around with Leaky ReLUs, PReLUs
+* Change optimizer
+* Tune hyperparameters
+  * 128 batch size with 50 epochs
+  * increasing batch size also helps
+* Learning rate with decay and a large momentum -
+  * increase your learning rate by a factor of 10 to 100
+  * use a high momentum value of 0.9 or 0.99
+* Experiment different network architectures
+  * try deeper and more recent networks than lenet
+* Change dimentions of LeNet layers
+* i get 99.3 on validation using 
+  * more deeper network + 
+  * batch normalization +  
+  * using YUV (Y channel) instead of grayscale image + 
+  * cv2.Histogram for contrast problem + 
+  * data augment
+
+* Found a video on youTube with title "driving Berlin" and made some screenshots
+  * The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
+  * *Driving through Berlin* https://www.youtube.com/watch?v=3SQe2xlHEiU
+  * *Driving in Berlin Streets, Germany* https://www.youtube.com/watch?v=FllWycSZKpk
+  * *Driving through... Berlin!* https://www.youtube.com/watch?v=JlASX8L04hI
+  * *Driving Through (München) Munich Germany* https://www.youtube.com/watch?v=2LXwr2bRNic
+  * https://www.howtogermany.com/images/roadsigns1.jpg
 
