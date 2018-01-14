@@ -1,16 +1,5 @@
 # **Traffic Sign Recognition Project** 
 
-**Build a Traffic Sign Recognition Project**
-
-The goals / steps of this project are the following:
-* Load the data set (see below for links to the project data set)
-* Explore, summarize and visualize the data set
-* Design, train and test a model architecture
-* Use the model to make predictions on new images
-* Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
-
-
 [//]: # (Image References)
 
 [image1]: ./figs/1_all_traffic_signs.png "All signs"
@@ -19,7 +8,10 @@ The goals / steps of this project are the following:
 [image4]: ./figs/6_label_distribution_2.png "New Distribution"
 [image5]: ./figs/LeNet-5.png "LeNet"
 [image6]: ./figs/2_LeNet_model_accuracy.png "LeNet Accuracy"
-[image7]: ./figs/4_new_images.png "New images"
+[image7]: ./figs/3_improved_model_accuracy.png "Improved Accuracy"
+[image8]: ./figs/4_new_images.png "New images"
+[image9]: ./figs/5_top5_prob.png "Top 5"
+[image10]: ./figs/4_new_images.png "New images"
 
 
 <!-- 
@@ -103,16 +95,13 @@ The type and the image labels of German traffic signs included in the training d
 The figure below listed one image for each traffic sign type in the training data set.
 ![All traffic signs][image1]
 
-Below is a histogram chart showing how the number of training data set labels are distributed. 
+Displayed below is a histogram chart showing how the number of training data set labels are distributed. 
 The x axis shows the sign label, while the height of each bin shows the number of images for each label. 
 It's clear the data sampling distribution is uneven among diffrent traffic signs, with the largest number 
 is roughly 10 times larger than the smallest one. This non-uniform distribution will affect the accuracy 
 for these under-sampled signs.
 
 ![distribution of traffic sign labels][image2]
-
-
-
 
 ### Design and Test a Model Architecture
 
@@ -127,13 +116,13 @@ with operations like rotate, flip, zoom. Here is a few examples of augmented Sto
 (in the actual data preprocessing, the flip/mirror operation is not used, since the stop sign does not possess 
 mirror symmetry). 
 
-![Data argumentation][image2]
+![Data argumentation][image3]
 
 With image data argumented, data sample size is increased from 34,799 for the original data set 
 to 91,736 for the augmented data set. Roughly a factor of 3 increase in the number of images. 
 The numbers of different traffic signs are more evenly distributed, as seen below:
 
-![distribution of argumented traffic sign labels][image3]
+![distribution of argumented traffic sign labels][image4]
 
 
 In a last step, image data is normalized with the code below to rescale pixel value  from [0, 256] to [-1, 1]. 
@@ -154,7 +143,7 @@ Consider including a diagram and/or table describing the final model.
 LeNet is a great deep network architecture for image recognition.
 It's a good starting point to build the model on.
 
-![LeNet-5 Architecture][image4]
+![LeNet-5 Architecture][image5]
 
 Final model consisted of the following layers:
 
@@ -183,7 +172,7 @@ Training was repeated with 50 epochs.
 #### 4. Approach to find a solution
 With the choice of LeNet, the initial accuracy on the validation data is about 84%. With image data normalization,
 the validation accuracy improves to ~90%. 
-![LeNet Accuracy][image5]
+![LeNet Accuracy][image6]
 
 Even though the accuracy on the training set is high (surpasses 99% after just 10 epochs),  but the validation 
 data set accuracy is low, indicating overfitting.
@@ -193,26 +182,47 @@ hope to make it more make more generalized decision. We have already used the ar
 Another way is to apply regularization. After apply dropout regularization on each convolution and fully connected layers 
 (not on the final output layer) with keep_prob = 0.6, the validation accuracy improves to more than 95%.
 
+The other technique that were tried but did not immediately seem to improve the accuracy includes: 
+histogram equalization, batch normalization, L2 regularization.
+
 My final model results were:
 * training set accuracy of 99.3%
 * validation set accuracy of 95.6%
 * test set accuracy of 94.2% 
 
+![Improved Accuracy][image7]
+
+It time permits in the future, I would like to try the following techniques to see how they will improve the model:
+* More augmented image on most incorrectly classified images
+* Change activation functions, play around with Leaky ReLUs, PReLUs
+* Change optimizer
+* Tune hyperparameters: batch size, epochs
+* Learning rate with decay and a large momentum
+* Change dimentions of LeNet layers, or 
+* Different deeper network architectures
+
 ### Test a Model on New Images
 
 #### 1. German traffic signs found on the web 
 
-<!-- 
-For each image, discuss what quality or qualities might be difficult to classify.
- -->
+To find additional German traffic signs on the web, I looked up a few video on youTube with title 
+similar to "driving Berlin" and made hundreds of screenshots. Since these videos were filmed in 
+German with car's camera, they provide as close image as possible to the training data sets.
 
-Here are 20 German traffic signs that I found on the web:
+The link to these videos are listed below:
+* [Driving through Berlin](https://www.youtube.com/watch?v=3SQe2xlHEiU)
+* [Driving in Berlin Streets, Germany](https://www.youtube.com/watch?v=FllWycSZKpk)
+* [Driving through... Berlin!](https://www.youtube.com/watch?v=JlASX8L04hI)
+* [Driving Through (München) Munich Germany](https://www.youtube.com/watch?v=2LXwr2bRNic)
 
-![New images found on the web][image5]
+After the screenshots were made, final process has to be made to make sure the traffic signs are 
+roughly centered, and image size are resized or cropped to be 32x32 in pixels.
 
-The first image might be difficult to classify because ...
+Here are 20 German traffic signs that I captured with this method:
+![New images found on the web][image8]
 
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+
+#### 2. Model's predictions on these new traffic signs
 
 Here are the results of the prediction:
 
@@ -225,9 +235,13 @@ Here are the results of the prediction:
 | Slippery Road			| Slippery Road      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 14 of the 20 traffic signs, which gives an accuracy of 70%. 
+This compares worse to the accuracy on the test set of 94.2%.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+
+![Top 5 Prediction][image8]
+
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
@@ -244,13 +258,6 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 For the second image ... 
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
-## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ### Improve Model
 * Add regularization features
@@ -288,11 +295,4 @@ For the second image ...
   * cv2.Histogram for contrast problem + 
   * data augment
 
-* Found a video on youTube with title "driving Berlin" and made some screenshots
-  * The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
-  * *Driving through Berlin* https://www.youtube.com/watch?v=3SQe2xlHEiU
-  * *Driving in Berlin Streets, Germany* https://www.youtube.com/watch?v=FllWycSZKpk
-  * *Driving through... Berlin!* https://www.youtube.com/watch?v=JlASX8L04hI
-  * *Driving Through (München) Munich Germany* https://www.youtube.com/watch?v=2LXwr2bRNic
-  * https://www.howtogermany.com/images/roadsigns1.jpg
 
