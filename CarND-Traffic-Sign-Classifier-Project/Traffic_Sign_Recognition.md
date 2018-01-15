@@ -158,6 +158,17 @@ Final model consisted of the following layers:
 
 #### 3. Train the model
 
+The training was run on local computer with the following configuration:
+* Intel i7-7700 CPU @ 3.6GHz
+* 16GB Memory
+* GeForce GTX 1060 6GB GPU
+* Windows 10 x64-bit OS
+
+Experiment on the training with and without GPU configured in the tensorflow:
+* without GPU, 260 seconds are needed for 10 epochs
+* with GPU, only 26 seconds are need for 10 epochs.
+There is a 10x increase in computing power with the help of GPU.
+
 To train the model, I used AdamOptimizer. The following hyperparameters are used: batch size 128, learning rate 0.001. 
 Training was repeated with 50 epochs. 
 
