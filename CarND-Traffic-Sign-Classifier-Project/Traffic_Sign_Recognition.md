@@ -244,7 +244,7 @@ Here are the results of the prediction:
 The model was able to correctly guess 17 of the 20 traffic signs, which gives an accuracy of 85%. 
 This compares worse to the accuracy on the test set of 94.2%. 
 
-#### 3. Certainty of the model 
+#### 3. Model prediction certainty 
 
 By looking at the softmax probabilities for each prediction, we may know how certain the model is when predicting on 
 each of the new images 
@@ -321,6 +321,7 @@ The correct sign is listed on the 5th top candidate, though with very low probab
 
 This document describes how to use LeNet architecture to train a model to make satisfactory prediction 
 on the German traffic sign images, both for the validation, test data, and on the newly captured images. 
+
 There are more rooms to improve the prediction accuracy with the following techniques:
 * More augmented image on most incorrectly classified images
 * Change activation functions, play around with Leaky ReLUs, PReLUs
