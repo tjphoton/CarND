@@ -99,9 +99,9 @@ for these under-sampled signs.
 
 #### 1. Image data preprocess
 
-Since the traffic sign in the training data distribution is highly non-uniform, under-sampled image 
-data need to be added to avoid loss in accuracy. One way to add more data to the under-sampled data 
-is to collect more. Another way to do is use the argumentation technique.
+Each type of the traffic sign in the training data distribution is highly non-uniform, under-sampled image 
+data need to be added to avoid loss of accuracy. One way to add more data to the under-sampled data 
+is to collect more. Since this is not feasible, data argumentation technique is used to increase the size of data sample.
 
 Python package [Augmentor](http://augmentor.readthedocs.io/en/master/) is used to artificially generate image data
 with operations like rotate, flip, zoom. Here is a few examples of augmented Stop Sign images 
@@ -110,8 +110,8 @@ mirror symmetry).
 
 ![Data argumentation][image3]
 
-With image data argumented, data sample size is increased from 34,799 for the original data set 
-to 91,736 for the augmented data set. Roughly a factor of 3 increase in the number of images. 
+With image data argumented with more data generated towards under-sampled images, data sample size increased 
+from 34,799 for the original data set to 91,736 for the augmented data set. Roughly a factor of 3 increase.
 The numbers of different traffic signs are more evenly distributed, as seen below:
 
 ![distribution of argumented traffic sign labels][image4]
@@ -185,15 +185,6 @@ My final model results were:
 
 ![Improved Accuracy][image7]
 
-It time permits in the future, I would like to try the following techniques to see how they will improve the model:
-* More augmented image on most incorrectly classified images
-* Change activation functions, play around with Leaky ReLUs, PReLUs
-* Change optimizer
-* Tune hyperparameters: batch size, epochs
-* Learning rate with decay and a large momentum
-* Change dimentions of LeNet layers, or 
-* Different deeper network architectures
-
 ---
 ### Test a Model on New Images
 
@@ -228,7 +219,7 @@ may result in reduced prediction accuracy.
 Here are the results of the prediction:
 
 | 	 Prediction       	|     Image	True Label			|    Correct ?   |
-|:---------------------:|:-----------------------------:|:--------------:|
+|:----------------------|:------------------------------|:--------------:|
 |  Keep right 			| Keep right                  	|     ✓ 		 |
 |  Road work 			| Road work                  	|     ✓ 		 |
 |  Priority road 		| Priority road                 |     ✓ 		 |
@@ -249,18 +240,19 @@ Here are the results of the prediction:
 |  Right-of-way at the next intersection | Right-of-way at the next intersection  | ✓ |
 |  No entry 			| No entry                  	|     ✓ 		 |
 |  Bicycles crossing 	| Bicycles crossing             |     ✓ 		 |
-|:---------------------:|:-----------------------------:|:--------------:|
-|						Accuracy 						|  17/20 = 85%   |
-
 
 The model was able to correctly guess 17 of the 20 traffic signs, which gives an accuracy of 85%. 
 This compares worse to the accuracy on the test set of 94.2%. 
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+#### 3. Certainty of the model 
+
+By looking at the softmax probabilities for each prediction, we may know how certain the model is when predicting on 
+each of the new images 
+(OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 12th and 13th cell of the Ipython notebook.
 
-The figure below displays how the model predicts the newly captured signs. 
+The figure below displays the top 5 softmax probabilities for each newly captured signs image along with the sign type of each probability
 The first column are the input images, the 2nd column are the sample image with highest probability (probability labeled above images),
 the 3rd column are the sample image with 2nd highest probability, etc.
 
@@ -311,11 +303,6 @@ For the 3rd mis-identified image "Turn right ahead"
 
 Model predicted traffic sign name with probability:
 
-       [40,  7, 42,  1, 33],
-
-  [  9.82987165e-01,   5.14808297e-03,   2.96556833e-03,
-          1.70371437e-03,   1.34482677e-03],
-
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | .98         			| Roundabout mandatory							| 
@@ -332,4 +319,16 @@ The correct sign is listed on the 5th top candidate, though with very low probab
 ---
 ### Conclusion
 
+This document describes how to use LeNet architecture to train a model to make satisfactory prediction 
+on the German traffic sign images, both for the validation, test data, and on the newly captured images. 
+There are more rooms to improve the prediction accuracy with the following techniques:
+* More augmented image on most incorrectly classified images
+* Change activation functions, play around with Leaky ReLUs, PReLUs
+* Change optimizer
+* Tune hyperparameters: 
+  * batch size, 
+  * epochs,
+  * learning rate with decay and a large momentum
+* Change dimentions of LeNet layers, or 
+* Different deeper network architectures
 
