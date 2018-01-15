@@ -10,18 +10,10 @@
 [image7]: ./figs/3_improved_model_accuracy.png "Improved Accuracy"
 [image8]: ./figs/4_new_images.png "New images"
 [image9]: ./figs/5_top5_prob.png "Top 5"
-[image10]: ./figs/4_new_images.png "New images"
+[image10]: ./figs/predict1.png "Prediction 1"
+[image11]: ./figs/predict2.png "Prediction 2"
+[image12]: ./figs/predict3.png "Prediction 3"
 
-
-<!-- 
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
- -->
 
 ### Writeup and Code
 
@@ -188,8 +180,8 @@ histogram equalization, batch normalization, L2 regularization.
 
 My final model results were:
 * training set accuracy of 99.3%
-* validation set accuracy of 96.0%
-* test set accuracy of 95.0% 
+* validation set accuracy of 95.9%
+* test set accuracy of 94.0% 
 
 ![Improved Accuracy][image7]
 
@@ -223,56 +215,121 @@ roughly centered, and image size are resized or cropped to be 32x32 in pixels.
 Here are 20 German traffic signs that I captured with this method:
 ![New images found on the web][image8]
 
+Efforts were made to make sure these traffic signs are as close to the German traffic sign training data sets.
+But in reality, there are a few differences in the new images. 
+1. Some images are captured from a titled angel, resulting in different perspective angle. 
+2. Some images are zoomed in too much with some parts of the sign cropped off from the images.
+3. Lighting condition and/or camera quality may slightly differ between the training and newly captured images.
+All these contribute to the difference beween "out of sample" data differ from the training sample data, 
+may result in reduced prediction accuracy.
 
 #### 2. Model's predictions on these new traffic signs
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	 			|    Accuracy    |
+| 	 Prediction       	|     Image	True Label			|    Correct ?   |
 |:---------------------:|:-----------------------------:|:--------------:|
-|  Keep right 			|   Keep right                  | <span style="color:green"> ✓ </span> |
-|  General caution  	|   General caution             | <span style="color:red"> ✘ </span> |
-|  Priority road  		|   Priority road             |  
-|  Turn left ahead  	|   Turn left ahead             |
-|  Speed limit (30km/h) |   Speed limit (30km/h)             |
-|  Children crossing  	|   Children crossing             |
-|  Speed limit (30km/h) |   Speed limit (30km/h)             |
-|  Priority road  		|   Priority road             |
-|  Yield  				|   Yield             |
-|  Roundabout mandatory |   Roundabout mandatory             |
-|  No vehicles  		|   No vehicles             |
-|  Yield  				|   Yield             |
-|  Roundabout mandatory |   Roundabout mandatory             |
-|  Turn left ahead  	|   Turn left ahead             |
-|  Go straight or right |   Go straight or right             |
-|  Ahead only  			|   Ahead only             |
-|  Stop  				|   Stop             |
-|  Right-of-way at the next intersection  |   Right-of-way at the next intersection
-|  No entry  			|   No entry             |
-|  Bicycles crossing    |   Bicycles crossing             |
+|  Keep right 			| Keep right                  	|     ✓ 		 |
+|  Road work 			| Road work                  	|     ✓ 		 |
+|  Priority road 		| Priority road                 |     ✓ 		 |
+|  Keep right 			| Go straight or left           |     ✘ 		 |
+|  Speed limit (30km/h) | Speed limit (30km/h)          |     ✓ 		 |
+|  Children crossing 	| Children crossing             |     ✓ 		 |
+|  Speed limit (30km/h) | Speed limit (30km/h)          |     ✓ 		 |
+|  Speed limit (80km/h) | Speed limit (50km/h)          |     ✘ 		 |
+|  Yield 				| Yield                  		|     ✓ 		 |
+|  Go straight or right | Go straight or right          |     ✓ 		 |
+|  No vehicles 			| No vehicles                  	|     ✓ 		 |
+|  Yield 				| Yield                  		|     ✓ 		 |
+|  Roundabout mandatory | Turn right ahead            	|     ✘ 		 |
+|  Turn left ahead 		| Turn left ahead               |     ✓ 		 |
+|  Go straight or right | Go straight or right          |     ✓ 		 |
+|  Ahead only 			| Ahead only                  	|     ✓ 		 |
+|  Stop 				| Stop                  		|     ✓ 		 |
+|  Right-of-way at the next intersection | Right-of-way at the next intersection  | ✓ |
+|  No entry 			| No entry                  	|     ✓ 		 |
+|  Bicycles crossing 	| Bicycles crossing             |     ✓ 		 |
+|:---------------------:|:-----------------------------:|:--------------:|
+|						Accuracy 						|  17/20 = 85%   |
 
 
-The model was able to correctly guess 15 of the 20 traffic signs, which gives an accuracy of 75%. 
-This compares worse to the accuracy on the test set of 94.2%.
+The model was able to correctly guess 17 of the 20 traffic signs, which gives an accuracy of 85%. 
+This compares worse to the accuracy on the test set of 94.2%. 
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-![Top 5 Prediction][image8]
+The code for making predictions on my final model is located in the 12th and 13th cell of the Ipython notebook.
+
+The figure below displays how the model predicts the newly captured signs. 
+The first column are the input images, the 2nd column are the sample image with highest probability (probability labeled above images),
+the 3rd column are the sample image with 2nd highest probability, etc.
+
+![Top 5 Prediction][image9]
 
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+Let's look at these three mis-identified images.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+![Prediction #1][image10]
+
+The 1st mis-identified image "Go straight or left".
+Model predicted traffic sign name with probability:
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .81         			| Keep right									| 
+| .18     				| Go straight or right							|
+| .002					| Turn left ahead								|
+| .002	      			| End of all speed and passing limits			|
+| .002				    | Roundabout mandatory 							|
 
+The model is relatively sure that this is a Keep right sign (probability of 0.81), 
+and may be a "Go straight or right" sign with probability 0.18. It's actually a "Go straight or left" sign. 
+It's a bit surprise that the correct sign is not even in the top 5 candidates. 
+It's probably due to the red traffic light in the image that confused the model, or the sign is off the center to the top.
 
-For the second image ... 
+![Prediction #2][image11]
+
+For the 2nd mis-identified image "Speed limit (50km/h)".
+Model predicted traffic sign name with probability:
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .49         			| Speed limit (80km/h)							| 
+| .20     				| Speed limit (60km/h)							|
+| .14					| Speed limit (50km/h)							|
+| .07	      			| Speed limit (30km/h)							|
+| .04				    | Speed limit (100km/h) 						|
+
+The model seem very confident the image is a speed limit sign (top 5 prediction are all speed limit signs), 
+since they all have the same round shape, red circle color, and black number inside. 
+But it is not very confident on the actually number in the speed limit sign. 
+The probability of the top candidates are not differ much with the correct one the 3rd on the list.
+
+![Prediction #3][image12]
+
+For the 3rd mis-identified image "Turn right ahead"
+
+Model predicted traffic sign name with probability:
+
+       [40,  7, 42,  1, 33],
+
+  [  9.82987165e-01,   5.14808297e-03,   2.96556833e-03,
+          1.70371437e-03,   1.34482677e-03],
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .98         			| Roundabout mandatory							| 
+| .005     				| Speed limit (100km/h)							|
+| .003					| End of no passing by vehicles over 3.5 metric ...	|
+| .002	      			| Speed limit (30km/h)							|
+| .001				    | Turn right ahead 								|
+
+The model is very confident the image is a "Roundabout" sign (probability 98%), 
+but it is actually a "Turn right ahead" sign. 
+The are some similarity in the "Roundabout" and "Turn right ahead" signs, so it is possible to have this wrongly predicted. 
+The correct sign is listed on the 5th top candidate, though with very low probability.
+
+---
+### Conclusion
 
 
