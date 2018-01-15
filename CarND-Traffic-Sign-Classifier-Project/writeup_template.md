@@ -4,6 +4,49 @@
 
 ### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
+### Improve Model
+* Add regularization features
+  * drop out regularization
+  * L2 regularization
+* Pre-process Data
+  * normalization and setting zero mean
+  * histogram equalization
+    * improve the value range and detail of many of the images 
+    * locally adaptive equalization works better than global
+    * Histogram equalization https://en.wikipedia.org/wiki/Histogram_equalization
+    * scikit-image Local Histogram Equalization http://scikit-image.org/docs/dev/auto_examples/color_exposure/plot_local_equalize.html
+* Argument training data
+  * Augmentor is an image augmentation library  https://github.com/mdbloice/Augmentor
+  * rotate or shift image
+  * change color
+
+* Batch normalisation
+  *  https://medium.com/deeper-learning/glossary-of-deep-learning-batch-normalisation-8266dcd2fa82
+* Change activation functions, play around with Leaky ReLUs, PReLUs
+* Change optimizer
+* Tune hyperparameters
+  * 128 batch size with 50 epochs
+  * increasing batch size also helps
+* Learning rate with decay and a large momentum -
+  * increase your learning rate by a factor of 10 to 100
+  * use a high momentum value of 0.9 or 0.99
+* Experiment different network architectures
+  * try deeper and more recent networks than lenet
+* Change dimentions of LeNet layers
+* i get 99.3 on validation using 
+  * more deeper network + 
+  * batch normalization +  
+  * using YUV (Y channel) instead of grayscale image + 
+  * cv2.Histogram for contrast problem + 
+  * data augment
+
+* Found a video on youTube with title "driving Berlin" and made some screenshots
+  * The signs are real, the signs are German and they were filmed on the car's camera - everything is legal
+  * *Driving through Berlin* https://www.youtube.com/watch?v=3SQe2xlHEiU
+  * *Driving in Berlin Streets, Germany* https://www.youtube.com/watch?v=FllWycSZKpk
+  * *Driving through... Berlin!* https://www.youtube.com/watch?v=JlASX8L04hI
+  * *Driving Through (München) Munich Germany* https://www.youtube.com/watch?v=2LXwr2bRNic
+  * https://www.howtogermany.com/images/roadsigns1.jpg
 ---
 
 **Build a Traffic Sign Recognition Project**
