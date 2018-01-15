@@ -17,9 +17,9 @@
 
 ### Writeup and Code
 
-* Link to the [project code](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier.ipynb)
+* Link to the [project code in iPython Notebook](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier.ipynb)
+* Link to the [project code in in HTML document](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Classifier.html)
 * Link to the [writeup in markdown](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Recognition.md)
-* Link to the [writeup in html](https://github.com/tjphoton/CarND/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic_Sign_Recognition.html)
 
 ---
 ### Data Set Summary & Exploration
