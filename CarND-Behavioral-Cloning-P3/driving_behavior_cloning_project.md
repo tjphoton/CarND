@@ -2,22 +2,13 @@
 
 Overview
 ---
-In this project, deep neural networks and convolutional neural networks will be utilized to clone driving behavior. 
+In this project, deep convolutional neural networks will be utilized to clone driving behavior. 
 
-With Udacity simulator (the interface is very similar to a video game!), data is collected from mannually steering a car around tracks. Image data and steering angles collected from the simulator are used to train a neural network as input and output respectively. Keras with TensorFlow backend is used for the training, validation and testing on the model. The model will then output a steering angle to an autonomous vehicle to drive the car around the track.
-
-Goals
----
-The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
-* Build, a convolution neural network in Keras that predicts steering angles from images
-* Train and validate the model with a training and validation set
-* Test that the model successfully drives around track one without leaving the road
-* Summarize the results with a written report
+With Udacity simulator (the interface is very similar to a video game!), data is collected from mannually driving a car around tracks to mimic good human driving hehavior. Image data and steering angles collected from the simulator are used to train a neural network as input and output respectively. Keras with TensorFlow backend is used as framework for the building, training, validation and testing on the model. The model will then output a steering angle to an autonomous vehicle to drive the car around the track alone the center line without leaving the raod.
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
+[image1]: ./examples/Navidia-cnn-architecture.png "Navidia architecture"
 [image2]: ./examples/placeholder.png "Grayscaling"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
@@ -28,28 +19,30 @@ The goals / steps of this project are the following:
 Files included
 ---
 
-The project includes the following files:
+The project includes the following files in the same GitHub folder as this document:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* writeup_report.md summarizing the results
+* driving_behavior_cloning_project.md summarizing the results
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-Model Architecture and Training Strategy
+Model Architecture
 ---
 
-#### 1. Model Architecture
+The network architecture used in this project is the similar to the Navidia architecture(https://arxiv.org/pdf/1704.07911.pdf), which consists of 9 layers, including a normalization layer, 5 convolutional layers, and 3 fully connected layers. 
 
-The network architecture used in this project is the similar to the Navidia architecture(https://arxiv.org/pdf/1704.07911.pdf) shown in 
-Figure 1 shows the network  used in this project, which consists of 9 layers, including a normalization layer, 5 convolutional layers, and 3 fully connected layers. 
+A visualization of the architecture is displayed below.
 
-The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer. 
+![Navidia architecture][image1]
 
-#### 2. Train the model
+
+
+Training Strategy
+---
 
 The weights of the network is trained to minimize the mean-squared error between the steering angle output by the network, and the ground truth human driver steering angle.
 
@@ -79,13 +72,7 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-#### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
