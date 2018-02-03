@@ -10,7 +10,7 @@ With Udacity simulator (the interface is very similar to a video game!), data is
 
 [//]: # (Image References)
 
-[image1]: ./examples/car.png "Car Animation"
+[image1]: ./examples/car.gif "Car Animation"
 [image2]: ./examples/Navidia-cnn-architecture.png "Navidia architecture"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
