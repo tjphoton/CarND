@@ -37,8 +37,8 @@ The network architecture used in this project is the similar to the Navidia arch
 
 A visualization of the architecture is displayed below.
 
-![Navidia architecture][image1]
-
+<!-- ![Navidia architecture][image1] -->
+<img src="./examples/Navidia-cnn-architecture.png" align="center" height="300">
 
 
 Training Strategy
