@@ -42,8 +42,10 @@ A visualization of the architecture is displayed below.
 <!-- ![Navidia architecture][image1] -->
 <img src="./examples/Navidia-cnn-architecture.png" align="middle" height="500">
 
-!Layer (type)                    |   Output Shape     |  Param #  |   Connected to             |
-!--------------------------------|:------------------:|:---------:|:--------------------------:|
+
+
+|Layer (type)                    |   Output Shape     |  Param #  |   Connected to             |
+|:-------------------------------|:------------------:|:---------:|:--------------------------:|
 !cropping2d_1 (Cropping2D)       | (None, 75, 320, 3) |   0       |   cropping2d_input_2[0][0] |
 !lambda_1 (Lambda)               | (None, 75, 320, 3) |   0       |    cropping2d_1[0][0]      |         
 !convolution2d_1 (Convolution2D) | (None, 36, 158, 24)|   1824    |    lambda_1[0][0]          |         
