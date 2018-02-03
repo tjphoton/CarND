@@ -59,9 +59,9 @@ A visualization of the architecture is displayed below.
 |dense_3 (Dense)                 | (None, 10)         |   510     |    dense_2[0][0]           |         
 |dense_4 (Dense)                 | (None, 1)          |   11      |    dense_3[0][0]           |         
 
-Total params: 559,419
-Trainable params: 559,419
-Non-trainable params: 0
+* Total params: 559,419
+* Trainable params: 559,419
+* Non-trainable params: 0
 
 
 
