@@ -6,10 +6,12 @@ In this project, deep convolutional neural networks will be utilized to clone dr
 
 With Udacity simulator (the interface is very similar to a video game!), data is collected from mannually driving a car around tracks to mimic good human driving hehavior. Image data and steering angles collected from the simulator are used to train a neural network as input and output respectively. Keras with TensorFlow backend is used as framework for the building, training, validation and testing on the model. The model will then output a steering angle to an autonomous vehicle to drive the car around the track alone the center line without leaving the raod.
 
+![Car Animation][image1] 
+
 [//]: # (Image References)
 
-[image1]: ./examples/Navidia-cnn-architecture.png "Navidia architecture"
-[image2]: ./examples/placeholder.png "Grayscaling"
+[image1]: ./examples/car.png "Car Animation"
+[image2]: ./examples/Navidia-cnn-architecture.png "Navidia architecture"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
@@ -33,12 +35,12 @@ python drive.py model.h5
 Model Architecture
 ---
 
-The network architecture used in this project is the similar to the Navidia architecture(https://arxiv.org/pdf/1704.07911.pdf), which consists of 9 layers, including a normalization layer, 5 convolutional layers, and 3 fully connected layers. 
+The network architecture used in this project is similar to the Navidia architecture in their End-to-End Learning Deep Neural Network (https://arxiv.org/pdf/1704.07911.pdf), which consists of 9 layers, including a normalization layer, 5 convolutional layers, and 3 fully connected layers. 
 
 A visualization of the architecture is displayed below.
 
 <!-- ![Navidia architecture][image1] -->
-<img src="./examples/Navidia-cnn-architecture.png" height="500">
+<img src="./examples/Navidia-cnn-architecture.png" align="middle" height="500">
 
 
 Training Strategy
