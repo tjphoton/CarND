@@ -46,18 +46,18 @@ A visualization of the architecture is displayed below.
 
 |Layer (type)                    |   Output Shape     |  Param #  |   Connected to             |
 |:-------------------------------|:------------------:|:---------:|:--------------------------:|
-!cropping2d_1 (Cropping2D)       | (None, 75, 320, 3) |   0       |   cropping2d_input_2[0][0] |
-!lambda_1 (Lambda)               | (None, 75, 320, 3) |   0       |    cropping2d_1[0][0]      |         
-!convolution2d_1 (Convolution2D) | (None, 36, 158, 24)|   1824    |    lambda_1[0][0]          |         
-!convolution2d_2 (Convolution2D) | (None, 16, 77, 36) |   21636   |    convolution2d_1[0][0]   |         
-!convolution2d_3 (Convolution2D) | (None, 6, 37, 48)  |   43248   |    convolution2d_2[0][0]   |         
-!convolution2d_4 (Convolution2D) | (None, 4, 35, 64)  |   27712   |    convolution2d_3[0][0]   |         
-!convolution2d_5 (Convolution2D) | (None, 2, 33, 64)  |   36928   |    convolution2d_4[0][0]   |         
-!flatten_1 (Flatten)             | (None, 4224)       |   0       |    convolution2d_5[0][0]   |         
-!dense_1 (Dense)                 | (None, 100)        |   422500  |    flatten_1[0][0]         |         
-!dense_2 (Dense)                 | (None, 50)         |   5050    |    dense_1[0][0]           |         
-!dense_3 (Dense)                 | (None, 10)         |   510     |    dense_2[0][0]           |         
-!dense_4 (Dense)                 | (None, 1)          |   11      |    dense_3[0][0]           |         
+|cropping2d_1 (Cropping2D)       | (None, 75, 320, 3) |   0       |   cropping2d_input_2[0][0] |
+|lambda_1 (Lambda)               | (None, 75, 320, 3) |   0       |    cropping2d_1[0][0]      |         
+|convolution2d_1 (Convolution2D) | (None, 36, 158, 24)|   1824    |    lambda_1[0][0]          |         
+|convolution2d_2 (Convolution2D) | (None, 16, 77, 36) |   21636   |    convolution2d_1[0][0]   |         
+|convolution2d_3 (Convolution2D) | (None, 6, 37, 48)  |   43248   |    convolution2d_2[0][0]   |         
+|convolution2d_4 (Convolution2D) | (None, 4, 35, 64)  |   27712   |    convolution2d_3[0][0]   |         
+|convolution2d_5 (Convolution2D) | (None, 2, 33, 64)  |   36928   |    convolution2d_4[0][0]   |         
+|flatten_1 (Flatten)             | (None, 4224)       |   0       |    convolution2d_5[0][0]   |         
+|dense_1 (Dense)                 | (None, 100)        |   422500  |    flatten_1[0][0]         |         
+|dense_2 (Dense)                 | (None, 50)         |   5050    |    dense_1[0][0]           |         
+|dense_3 (Dense)                 | (None, 10)         |   510     |    dense_2[0][0]           |         
+|dense_4 (Dense)                 | (None, 1)          |   11      |    dense_3[0][0]           |         
 
 Total params: 559,419
 Trainable params: 559,419
