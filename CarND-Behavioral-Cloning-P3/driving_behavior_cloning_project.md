@@ -42,7 +42,10 @@ A visualization of the architecture is displayed below.
 <!-- ![Navidia architecture][image1] -->
 <img src="./examples/Navidia-cnn-architecture.png" align="middle" height="500">
 
-
+Let's look at a summary of the model by excuting the following command: 
+```
+pmodel.summary()
+```
 
 |Layer (type)                    |   Output Shape     |  Param #  |   Connected to             |
 |:-------------------------------|:------------------:|:---------:|:--------------------------:|
