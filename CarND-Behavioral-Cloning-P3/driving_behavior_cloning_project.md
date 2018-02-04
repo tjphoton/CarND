@@ -26,10 +26,11 @@ Files included
 ---
 
 The project includes the following files in the same GitHub folder as this document:
-* model.py containing the script to create and train the model
+* driving_behavior_cloning_project.md this document summarizing the results
+* model_nvidia.h5 containing a trained convolution neural network 
+* clone.py containing the script to create and train the model
+* demo.mp4 recorded video for the simulator rest driving on training network
 * drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network 
-* driving_behavior_cloning_project.md summarizing the results
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
