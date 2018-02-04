@@ -18,8 +18,9 @@ With Udacity simulator (the interface is very similar to a video game!), data is
 [image6]: ./examples/drive2.png "predicted angle vs input angle #2"
 [image7]: ./examples/drive3.png "predicted angle vs input angle #3"
 [image8]: ./examples/drive4.png "predicted angle vs input angle #4"
-[image9]: ./examples/angle1.png "provided data sample angles"
+[image9]: ./examples/angles1.png "provided data sample angles"
 [image10]: ./examples/angle2.png "simulated data sample angles"
+[image11]: ./examples/hist2.png "steering angle distribution"
 
 Files included
 ---
@@ -94,7 +95,7 @@ The images captured in the car simulator are too large to store in the memory al
 
 The weights of the network is trained to minimize the mean-squared error between the steering angle output by the network and the ground truth human driver steering angle.
 
-The model initially contains dropout layers in the effort to reduce overfitting, but it does not seem to improve the result. In the final implementation, the dropout layer is not implemented.
+The model initially contains dropout layers in the effort to reduce overfitting, but it does not seem to improve the result. In the final model, the dropout layer is not implemented.
 
 The model used an adam optimizer, in which the learning rate parameter is adaptively changed based on the average moments, no mannual tunning is necessary. 
 
@@ -102,7 +103,10 @@ The model used an adam optimizer, in which the learning rate parameter is adapti
 Final Result
 ---
 
-To test the final trained model, the model was runn through the simulator and to see how well the car was driving around track and to ensure the vehicle stay on the track. The recored video named ["demo.mp4"](./demo.mp4) is located in the same folder as this document.
+To test the final trained model, the model was runn through the simulator and to see how well the car was driving around track and to ensure the vehicle stay on the track. The car was able to navigate through the whole track without leaving the driable track surface. The recored video named ["demo.mp4"](./demo.mp4) is located in the same folder as this document. 
+
+To further test how the model network output steering angle compare to the human driving steering angles, two methods are used:
+1. A few sample camera images with ground truth steering angle (red line) and network output angle (blue line) simultaneously drawn. Most of the images show both lines are closely overlay to each other.   
 
 ![predicted 1][image5]
 
@@ -112,9 +116,21 @@ To test the final trained model, the model was runn through the simulator and to
 
 ![predicted 4][image8]
 
+2. Time series steering angles are plotted with both human steering angle (red line) and network output steering angle (blue line) on the training data set. Again, it shows both are close to each other.
+
+Udacity provide data seems come from keyboard training, such that most of the time the steering angles are zero, with sudden sharp steering input. 
+
 ![provide data sample angles][image9]
 
+The following figure is from my mouse trained simulator data, which has more smooth steering input. 
+
 ![simulated data sample angles][image10]
+
+In both cases, the model output steering angles are much smoother than the human input steering angles. The two figure also shows in both training data set, the average steering angle (horizontal dotted line) are not zero, towards the negetive side, indicating the driving tendency to turn left. This is probably due to the un-balanced data sample with more data steering to the left. This can be confirmed by the steering angle distribution shown below:
+
+![angle distribution][image11]
+
+
 
 Credit
 ---
