@@ -12,8 +12,8 @@ With Udacity simulator (the interface is very similar to a video game!), data is
 
 [image1]: ./examples/car.gif "Car Animation"
 [image2]: ./examples/Navidia-cnn-architecture.png "Navidia architecture"
-[image3]: ./examples/driving_center.png "Center driving image"
-[image4]: ./examples/driving_right_side.png "Recovery image from right"
+[image3]: ./examples/driving_center.jpg "Center driving image"
+[image4]: ./examples/driving_right_side.jpg "Recovery image from right"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/angle1.png ""
 [image7]: ./examples/angle2.png "Flipped Image"
