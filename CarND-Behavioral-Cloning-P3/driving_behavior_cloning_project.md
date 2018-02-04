@@ -19,7 +19,7 @@ With Udacity simulator (the interface is very similar to a video game!), data is
 [image7]: ./examples/drive3.png "predicted angle vs input angle #3"
 [image8]: ./examples/drive4.png "predicted angle vs input angle #4"
 [image9]: ./examples/angles1.png "provided data sample angles"
-[image10]: ./examples/angle2.png "simulated data sample angles"
+[image10]: ./examples/angles2.png "simulated data sample angles"
 [image11]: ./examples/hist2.png "steering angle distribution"
 
 Files included
@@ -134,5 +134,5 @@ In both cases, the model output steering angles are much smoother than the human
 
 Credit
 ---
-Some ideas are from 
+Some visualization ideas are inspired from [Microsoft Autonomous Driving Cookbook](https://github.com/Microsoft/AutonomousDrivingCookbook).
 
