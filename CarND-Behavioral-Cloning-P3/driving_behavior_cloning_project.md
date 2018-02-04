@@ -127,7 +127,7 @@ The following figure is from my mouse trained simulator data, which has more smo
 
 ![simulated data sample angles][image10]
 
-In both cases, the model output steering angles are much smoother than the human input steering angles. The two figure also shows in both training data set, the average steering angle (horizontal dotted line) are not zero, towards the negetive side, indicating the driving tendency to turn left. This is probably due to the un-balanced data sample with more data steering to the left. This can be confirmed by the steering angle distribution shown below:
+In both cases, the model output steering angles are much smoother and tighter than the human input steering angles. The two figure also shows in both training data set, the average steering angle (horizontal dotted line) are not zero, towards the negetive side, indicating the driving tendency to turn left. This is probably due to the un-balanced data sample with more data steering to the left. This can be confirmed by the steering angle distribution shown below:
 
 ![angle distribution][image11]
 
