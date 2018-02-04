@@ -15,8 +15,11 @@ With Udacity simulator (the interface is very similar to a video game!), data is
 [image3]: ./examples/driving_center.jpg "Center driving image"
 [image4]: ./examples/driving_right_side.jpg "Recovery image from right"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/angle1.png ""
-[image7]: ./examples/angle2.png "Flipped Image"
+[image6]: ./examples/angle1.png "predicted angle vs input angle #1"
+[image7]: ./examples/angle2.png "predicted angle vs input angle #2"
+[image8]: ./examples/angle3.png "predicted angle vs input angle #3"
+[image9]: ./examples/angle4.png "predicted angle vs input angle #4"
+
 
 Files included
 ---
@@ -73,9 +76,11 @@ Creation of the Training Set
 To capture good driving behavior, a few laps human driving in the simulator was recorded as training data. These images include both vehicle center lane  driving and off center-lane driving on both left and right sides of the road to the center. The intention of off-center lane driving is for the model to learn how to recover from the left side or right side of the road back to center. 
 
 An example image of center lane driving:
+
 ![Center driving][image3]
 
 Another image shows what a recovery driving looks like:
+
 ![Recovery from right side of the road][image4]
 
 Since track 1 is a counter-clock wise loop, to augment the data sat, I also flipped images and angles. These will not only increase the size of the data by a factor of 2, but also teach the model for both left and right turning behavior. I also intentionally drove the car in the opporsite direction to let the network learn somewhat different environment, and create more data with clock-wise direction.
@@ -100,9 +105,9 @@ Final Result
 To test the final trained model, the model was runn through the simulator and to see how well the car was driving around track and to ensure the vehicle stay on the track. The recored video named ["demo.mp4"](./demo.mp4) is located in the same folder as this document.
 
 
-![alt text][image2]
-![alt text][image3]
-![alt text][image4]
+![alt text][image6]
+![alt text][image7]
+![alt text][image8]
 ![alt text][image5]
 
 
