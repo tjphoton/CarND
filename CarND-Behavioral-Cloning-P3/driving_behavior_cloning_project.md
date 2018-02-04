@@ -14,12 +14,12 @@ With Udacity simulator (the interface is very similar to a video game!), data is
 [image2]: ./examples/Navidia-cnn-architecture.png "Navidia architecture"
 [image3]: ./examples/driving_center.jpg "Center driving image"
 [image4]: ./examples/driving_right_side.jpg "Recovery image from right"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/angle1.png "predicted angle vs input angle #1"
-[image7]: ./examples/angle2.png "predicted angle vs input angle #2"
-[image8]: ./examples/angle3.png "predicted angle vs input angle #3"
-[image9]: ./examples/angle4.png "predicted angle vs input angle #4"
-
+[image5]: ./examples/drive1.png "predicted angle vs input angle #1"
+[image6]: ./examples/drive2.png "predicted angle vs input angle #2"
+[image7]: ./examples/drive3.png "predicted angle vs input angle #3"
+[image8]: ./examples/drive4.png "predicted angle vs input angle #4"
+[image9]: ./examples/angle1.png "provided data sample angles"
+[image10]: ./examples/angle2.png "simulated data sample angles"
 
 Files included
 ---
@@ -104,10 +104,19 @@ Final Result
 
 To test the final trained model, the model was runn through the simulator and to see how well the car was driving around track and to ensure the vehicle stay on the track. The recored video named ["demo.mp4"](./demo.mp4) is located in the same folder as this document.
 
+![predicted 1][image5]
 
-![alt text][image6]
-![alt text][image7]
-![alt text][image8]
-![alt text][image5]
+![predicted 2][image6]
 
+![predicted 3][image7]
+
+![predicted 4][image8]
+
+![provide data sample angles][image9]
+
+![simulated data sample angles][image10]
+
+Credit
+---
+Some ideas are from 
 
