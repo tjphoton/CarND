@@ -119,7 +119,7 @@ I implemented this step in lines # through # in my code in `draw_road()` functio
 
 The pipeline performs very well on the entire project video, even during the shaddow area.
 
-Here's a ![link to my video result][video1]
+Here's a [link to my video result][video1]
 
 ---
 
