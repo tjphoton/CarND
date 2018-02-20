@@ -18,11 +18,12 @@ The goals / steps of this project are the following:
 [image3]: ./output_images/road_undistort2.png "Road Image Distortion Corrected #2"
 [image4]: ./output_images/road_transformed1.png "Road Image Perspective Transformed #1"
 [image5]: ./output_images/road_transformed1.png "Road Image Perspective Transformed #2"
-
-[image6]: ./output_images/binary_combo_example.jpg "Binary Example"
-[image7]: ./output_images/color_fit_lines.jpg "Fit Visual"
-[image8]: ./output_images/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[image6]: ./output_images/binary1.png "Binary Example #1"
+[image7]: ./output_images/binary4.png "Binary Example #2"
+[image8]: ./output_images/color_fit_sliding.png "Sliding Window Fit"
+[image9]: ./output_images/color_fit_roi.png "ROI Fit"
+[image10]: ./output_images/lane_overlay.png "Lane Overlay Output"
+[video1]: ./project_video_output.mp4 "Video"
 
 ---
 
@@ -36,19 +37,19 @@ The output `objpoints` and `imgpoints` are used to compute the camera calibratio
 
 This distortion correction is applied to the test image using the `cv2.undistort()` function in code cell #4 to obtaine this result: 
 
-![Undistored Image]	[image1]
+![Undistored Image][image1]
 
 ### Pipeline (single images)
 
-#### 1. Distortion correction on road image.
+#### 1. Distortion correction on road image
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the straight lanes test images:
+With the same camera calibration matrix and distortion coefficients calculated above from the chessboard images, use `cv2.undistort()` function again on the road image taken from the same camera mounted in the center of the car, straight lanes test images can be distortion corrected in the same manner, as shown below. The correction is successfully applied by obersaving the top right corner of the tree is more vertical than the un-corrected on. The car dashboard is also more downward curvered in the corrected images.
 
 ![Road Image Distortion Corrected #1][image2]
 ![Road Image Distortion Corrected #2][image3]
 
 
-#### 2. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+#### 2. Perspective transform
 
 The code for my perspective transform includes a function called `bird_view()`, which appears in the #8 code cell of the IPython notebook).  The `bird_view()` function takes as inputs an road image, outputs a perspective transformed bird view image. 
 the source (`src`) and destination (`dst`) points are hardcoded in the following manner:
@@ -81,36 +82,41 @@ I verified that my perspective transform was working as expected by drawing the 
 ![Road Image Perspective Transformed #2][image5]
 
 
-#### 3. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+#### 3. Thresholded binary image from color and gradients threshold methods
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at code cell #20 through #21 . Here's an example of my output for this step.
 
-![alt text][image6]
+![Binary Example #1][image6]
+![Binary Example #2][image7]
 
-
-#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+#### 4. Identified lane-line pixels and fit their positions with a polynomial
 
 Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
 
-![alt text][image7]
+![Sliding Window Fit][image8]
+![ROI Fit][image9]
 
-#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+#### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
-I did this in lines # through # in my code in `my_other_file.py`
+I did this in lines # through # in my code cell in `calc_curvature` and `calc_shift`.
+The negative value for the curvature means the road lane is curving to the left, while the positive value means curving to the right.
+For the car position relative to the center, negative value means the car is left to the center, while positive value means it's right to the center.
 
-#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+#### 6. Plot lane area back down onto the road
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in lines # through # in my code in `draw_road()` function.  Here is an example of my result on a test image:
 
-![alt text][image8]
+![Lane Overlay Output][image10]
 
 ---
 
 ### Pipeline (video)
 
-#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+#### 1. Link to the final video output.  
 
-Here's a [link to my video result](./project_video.mp4)
+The pipeline performs very well on the entire project video, even during the shaddow area.
+
+Here's a [link to my video result](video1)
 
 ---
 
