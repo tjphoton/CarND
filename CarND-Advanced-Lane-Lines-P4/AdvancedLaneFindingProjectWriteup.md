@@ -99,8 +99,11 @@ Then I did some other stuff and fit my lane lines with a 2nd order polynomial ki
 #### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
 I did this in lines # through # in my code cell in `calc_curvature` and `calc_shift`.
+
 The negative value for the curvature means the road lane is curving to the left, while the positive value means curving to the right.
 For the car position relative to the center, negative value means the car is left to the center, while positive value means it's right to the center.
+
+For the image above, the curverture for left lane is 290 meters curving to the left, the curverture for the right lane is 162 meters also curvigng to the left, the car is driving with 0.30 meters shift left to the center of the lanes.
 
 #### 6. Plot lane area back down onto the road
 
@@ -116,7 +119,7 @@ I implemented this step in lines # through # in my code in `draw_road()` functio
 
 The pipeline performs very well on the entire project video, even during the shaddow area.
 
-Here's a [link to my video result](video1)
+Here's a ![link to my video result][video1]
 
 ---
 
