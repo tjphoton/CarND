@@ -16,12 +16,12 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/undist_calibration.png "Undistorted"
 [image2]: ./output_images/road_undistort1.png "Road Image Distortion Corrected #1"
 [image3]: ./output_images/road_undistort2.png "Road Image Distortion Corrected #2"
-[image4]: ./output_images/road_transformed1.jpg "Road Image Perspective Transformed #1"
-[image5]: ./output_images/road_transformed1.jpg "Road Image Perspective Transformed #2"
+[image4]: ./output_images/road_transformed1.png "Road Image Perspective Transformed #1"
+[image5]: ./output_images/road_transformed1.png "Road Image Perspective Transformed #2"
 
-[image4]: ./output_images/binary_combo_example.jpg "Binary Example"
-[image5]: ./output_images/color_fit_lines.jpg "Fit Visual"
-[image6]: ./output_images/example_output.jpg "Output"
+[image6]: ./output_images/binary_combo_example.jpg "Binary Example"
+[image7]: ./output_images/color_fit_lines.jpg "Fit Visual"
+[image8]: ./output_images/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
 ---
@@ -85,14 +85,14 @@ I verified that my perspective transform was working as expected by drawing the 
 
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
-![alt text][image3]
+![alt text][image6]
 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
 
-![alt text][image5]
+![alt text][image7]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -102,7 +102,7 @@ I did this in lines # through # in my code in `my_other_file.py`
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image8]
 
 ---
 
