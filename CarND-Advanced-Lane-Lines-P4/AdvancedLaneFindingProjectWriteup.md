@@ -13,15 +13,15 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./camera_cal/undist_calibration.png "Undistorted"
-[image2]: ./examples/road_undistort1.png "Road Image Distortion Corrected #1"
-[image3]: ./examples/road_undistort2.png "Road Image Distortion Corrected #2"
-[image4]: ./examples/road_transformed1.jpg "Road Image Perspective Transformed #1"
-[image5]: ./examples/road_transformed1.jpg "Road Image Perspective Transformed #2"
+[image1]: ./output_images/undist_calibration.png "Undistorted"
+[image2]: ./output_images/road_undistort1.png "Road Image Distortion Corrected #1"
+[image3]: ./output_images/road_undistort2.png "Road Image Distortion Corrected #2"
+[image4]: ./output_images/road_transformed1.jpg "Road Image Perspective Transformed #1"
+[image5]: ./output_images/road_transformed1.jpg "Road Image Perspective Transformed #2"
 
-[image4]: ./examples/binary_combo_example.jpg "Binary Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image4]: ./output_images/binary_combo_example.jpg "Binary Example"
+[image5]: ./output_images/color_fit_lines.jpg "Fit Visual"
+[image6]: ./output_images/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
 ---
@@ -36,7 +36,7 @@ The output `objpoints` and `imgpoints` are used to compute the camera calibratio
 
 This distortion correction is applied to the test image using the `cv2.undistort()` function in code cell #4 to obtaine this result: 
 
-![Undistored Image[image1]
+![Undistored Image]	[image1]
 
 ### Pipeline (single images)
 
