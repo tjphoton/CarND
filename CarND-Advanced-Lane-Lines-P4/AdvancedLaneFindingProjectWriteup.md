@@ -29,7 +29,7 @@ The goals / steps of this project are the following:
 
 ### Camera Calibration
 
-The code for camera calibration in the code cell #2 - #7 of the IPython notebook located in "Advanced_Lane_Lines_Finding.ipynb" is used for compute camera matrix and distortion coefficients.
+The code for camera calibration used for compute camera matrix and distortion coefficients is in the code cell #2 - #7 of the IPython notebook located in "Advanced_Lane_Lines_Finding.ipynb". 
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in the calibration chessboard images provided in the repository.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection with `cv2.findChessboardCorners()` function in code cell #2.
 
@@ -43,7 +43,7 @@ This distortion correction is applied to the test image using the `cv2.undistort
 
 #### 1. Distortion correction on road image
 
-With the same camera calibration matrix and distortion coefficients calculated above from the chessboard images, use `cv2.undistort()` function again on the road image taken from the same camera mounted in the center of the car, straight lanes test images can be distortion corrected in the same manner, as shown below. The correction is successfully applied by obersaving the top right corner of the tree is more vertical than the un-corrected on. The car dashboard is also more downward curvered in the corrected images.
+With the same camera calibration matrix and distortion coefficients calculated above from the chessboard images, use `cv2.undistort()` function again on the road image taken from the same camera mounted in the center of the car, straight lanes test images can be distortion corrected in the same manner, as shown below. The correction is successfully applied by obersaving the top right corner of the tree is more vertical than the un-corrected on. The car dashboard is also more (correctly) downward curvered on two sides in the corrected images.
 
 ![Road Image Distortion Corrected #1][image2]
 ![Road Image Distortion Corrected #2][image3]
@@ -51,7 +51,7 @@ With the same camera calibration matrix and distortion coefficients calculated a
 
 #### 2. Perspective transform
 
-The code for my perspective transform includes a function called `bird_view()`, which appears in the #8 code cell of the IPython notebook).  The `bird_view()` function takes as inputs an road image, outputs a perspective transformed bird view image. 
+The code for the perspective transform includes a function called `bird_view()`, which appears in the #8 code cell of the IPython notebook.  The `bird_view()` function takes an road image as input, outputs a perspective transformed bird view image. 
 the source (`src`) and destination (`dst`) points are hardcoded in the following manner:
 
 ```python
@@ -76,7 +76,7 @@ This resulted in the following source and destination points:
 | 1056,  720    |   980,  720   |
 |  224,  720    |   300,  720   |
 
-I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
+The perspective transform is verified to work as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart. The lines appear parallel in the warped image.
 
 ![Road Image Perspective Transformed #1][image4]
 ![Road Image Perspective Transformed #2][image5]
@@ -84,16 +84,35 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 3. Thresholded binary image from color and gradients threshold methods
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at code cell #20 through #21 . Here's an example of my output for this step.
+A combination of color and gradient thresholds is used to generate a binary image containing likely lane pixels (thresholding steps at code cell #11 through #12). 
+
+Saturation (S) channel in the HSL color space with threshold between 170 and 255. The reason S channel is chosen is because it  does a fairly robust job of picking up the lines under very different color and contrast conditions.
+
+By exploring different combination of color threshold and gradient threshold, it is found that the gradient threshold (specifically, Sobel operator in the x direction) can complement color threshold by picking up some portion of the lane lines. A combination of these two threhold is implemented in the final code  (code cell #11) to take advantage of both method.
+
+Two examples of output are below. Most of the white pixels identified by color and gradients threshold methods are visual verified to be part of the lane lines, with some noise pixels which will be rejected later with some other techniques, such as sliding window search or region of interest search methods.
 
 ![Binary Example #1][image6]
 ![Binary Example #2][image7]
 
 #### 4. Identified lane-line pixels and fit their positions with a polynomial
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+After applying calibration, a perspective transform, thresholding to a road image, we now have a binary image where the lane lines stand out clearly. Next, we need to decide explicitly which pixels are part of the lines and which belong to the left line and which belong to the right line. 
+
+One way to do that is to take a histogram along all the columns in the lower half of the image, and find the peaks in the histogram. The two most prominent peaks in this histogram will be good indicators of the x-position of the base of the lane lines. Use that as a starting point to use a sliding window search for the lines, then find and follow the lines up to the top of the frame. The python code for the sliding window search method is located in code cell #14.
+
+Once we know where the left and right lane lines are, we may fit all identified pixels in each lane with two separate polynomials.
+
+In the next frame of video no blind search is needed, since we already know where the lines are in the previous frame. We may just search in a margin around the previous line position. The python code for the region of interest search is located in code cell # 15. This should help us track the lanes through sharp curves and tricky conditions. If for some reason we lose track of the lines, just go back to start from scratch with the sliding windows search to rediscover the lane lines again. 
+
+Below are the lane line search result with these two different methods:
+
+Sliding window search method result:
 
 ![Sliding Window Fit][image8]
+
+Region of Interest (ROI) search method result:
+
 ![ROI Fit][image9]
 
 #### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
@@ -115,7 +134,17 @@ I implemented this step in lines # through # in my code in `draw_road()` functio
 
 ### Pipeline (video)
 
-#### 1. Link to the final video output.  
+#### 1. Sanity Check
+
+#### 2. Look-Ahead Filter
+
+#### 3. Reset
+
+#### 4. Smoothing
+
+#### 5. Tracking
+
+#### 6. Link to the final video output.  
 
 The pipeline performs very well on the entire project video, even during the shaddow area.
 
