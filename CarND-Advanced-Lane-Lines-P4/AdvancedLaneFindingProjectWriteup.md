@@ -141,40 +141,45 @@ The fit from the rectified image has been warped back onto the original image an
 
 ### Pipeline (video)
 
-The image processing pipeline (in code cell #26) that was established to find the lane lines in images successfully processes the video. The [output video][video1] identified the lanes in every frame with the radius of curvature of the lane and vehicle position within the lane displayed on the top right corner. The are two picture in picture images displayed on the top as well, one for the color lane bird-view image, the other for the lane binary image with identified lane line pixels and lane pixel fit lines. The 2nd image is helpful, since it tells us whether the line pixels identified in the current frame are from sliding window search (with green search window boxes plotted) or from ROI search (with smoothly curvered green search region plotted). 
+The image processing pipeline (in code cell #26) that was established to find the lane lines in images successfully processes the video. The [output video][video1] identified the lanes in every frame with the radius of curvature of the lane and vehicle position within the lane displayed on the top right corner. The are two picture in picture images displayed on the top as well, one for the color lane bird-view image, the other for the lane binary image with identified lane line pixels and lane pixel fit lines. The 2nd image is helpful, since it tells us whether the line pixels identified in the current frame are from sliding window search (with green search window boxes plotted) or from ROI search (with smoothly curvered green search region plotted). The pipeline performs very well on the entire project video, even during the shaddow area, or pavement color changes. Here's a [link to the final result][video1]
 
-There are a few tricks specific to the video pipeline that help identifiy lane lines.
+There are a few tips and tricks Udacity provided that are specific to the video pipeline. These helped identifiy more clean lane lines, even in the trick conditions.
 
 #### 1. Tracking
 a `Line()` class (in code cell #20) is defined to keep track of all the interesting parameters measured from frame to frame, such as the last several detections of the lane lines and what the curvature was. This helps to properly treat new detections in the next frame.
 
 #### 2. Sanity Check
-Confirm the detection of lines makes sense by considering:
+Confirm the detection of lines makes sense by considering (`sanity_check()` function in code cell #21):
 * Both lane lines have similar curvature
 * They are separated by approximately the right distance horizontally
 * They are roughly parallel
 
 #### 3. Look-Ahead Filter
+Once the lane lines have been found in one frame of video and they passed the sanity check, no blind search is needed in the next frame, ROI search methond can be used to search lines within some margin +/- around the previous line detection center. Then do the sanity check on the new line detections again.
 
 #### 4. Reset
 
+If sanity checks reveal that the lane lines detected are problematic, retain the previous positions from the prior frame and move on to the next frame to search again. If the lines are lost for several frames in a row, start search from scratch using the histogram and sliding window search method to re-establish the measurement. (`lane_search()` function in code cell #22)
+
 #### 5. Smoothing
 
-#### 6. Link to the final video output.  
-
-The pipeline performs very well on the entire project video, even during the shaddow area, or pavement color changes.
-Here's a [link to my video result][video1]
+It is preferable to smooth over the last n frames of video to obtain a cleaner result that line detections do not jump around from frame to frame. The n number chosen for my implementation is 6.
 
 ---
 
 ### Discussion
 
-#### 1. Problems and issues faced in the implementation of this project.  
+#### 1. Problems and issues faced in the implementation of this project.
+This is a fun project. Most of my effort was spend on (1) fine tuning the threshold values to identify the lane line pixels, (2) implement the `Line()` classes to keep track of paramenters from frame to frame, (3) Test the logics when to move on the next frame and when to reset the search again.
 
-#### 2. Where will the pipeline likely fail?  
+#### 2. Where will the pipeline likely fail? 
+The current implementation of lane line detection is relatively robust, but I can imagine that there will be some hypothetical cases would cause the pipeline to fail.
+* Current pipeline assumes a car is driving on multi-lanes highway with two lane lines on each side, either in color white or yellow. In cases such as in local street, the probably only one center line on one side (or even no center line at all), and road sholder without lane mark on the other side. It will be trick for the algorithm to identify drivable portion of the road.
+* The pipleline will certainly fail when a car is trying to switch from one lane to other. Current algorithm assumes there are two lines on each side of the car. When lane switch is engaged, it's probably a good idea to identify three lines of these two lanes.
+* The test video is shot when road is not too congested, particualar there are no car directly in front of the driving car visible to the camera. When road condition is congested, the front car will block a large portion of the lane lines. Lane lines finding and fitting will be difficult. 
 
-#### 3. How to make it more robust?
+#### 3. How to improve the algorithem to make it more robust?
+For the problems mentioned in the last section, I beleive there is no easy solution whithin the scope of current project techniques. But I am sure it should have been thought of by the research team in the autonomously driving vehichle industry. Other computer vision techniques, or even machine learning might help us to achive the goal of safe driving. 
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+One thing I might try in the future is, current implementation of this project is all based on the traditional computer vision technique, we might get some improved result with the help from the state-of-the-art deep learning, provided we feed the training network with some pre-labled lane-line marks, e.g., which pixel belongs to lane lines, which pixel belongs to cars, etc. 
 
-Discussion includes some consideration of problems/issues faced, what could be improved about their algorithm/pipeline, and what hypothetical cases would cause their pipeline to fail.
