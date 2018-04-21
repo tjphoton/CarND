@@ -20,7 +20,7 @@ The goals / steps of this project are the following:
 
 ### Files
 * [P5writeup.md](https://github.com/tjphoton/CarND/blob/master/CarND-Vehicle-Detection-P5/P5writeup.md) : this file
-* [object detection video.ipynb](https://github.com/tjphoton/CarND/blob/master/CarND-Vehicle-Detection-P5/object%20detection%20video.ipynb) : main code for this project
+* [ipynb notebook](https://github.com/tjphoton/CarND/blob/master/CarND-Vehicle-Detection-P5/object%20detection%20video.ipynb) : main code for this project
 * [output_images](https://github.com/tjphoton/CarND/tree/master/CarND-Vehicle-Detection-P5/output_images) : images used to illustrate the steps taken to complete this project
 * [videos](https://github.com/tjphoton/CarND/blob/master/CarND-Vehicle-Detection-P5/project_video_output.mp4) : processed output video with vehicle detected
 
@@ -79,14 +79,12 @@ Here are some example images after the above pipeline:
 ### Video Implementation
 
 #### 1. Link to your final video output. 
-Here's a [video1](./project_video_output.mp4)
+Here's the final [video](./project_video_output.mp4) with vechile detected and labeled on the original video.
 
 
 #### 2. Describe how you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.
-
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+In section marked "Pipeline to detect vehicle", heatmap filter is implemented. The positions of positive detections in each frame of the video are recorded. From the positive detections a heatmap is created and then thresholded that map to identify vehicle positions.  `scipy.ndimage.measurements.label()` is then used to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.
 
 ---
 
@@ -97,7 +95,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 The problems that I faced while implementing this project were 
 1. Make sure reading image file consistently. OpenCV loads images in the *BGR* format. mpimg to read images and pipeline will receive images in the *RGB* format.
 2. A lot of parameters tunning is needed, for HOG feature extraction, SVM parameters, sliding windows scale, etc.
-3. Although most of the time, the car detection is accurate, and false positives are miminum. There are still some false positive even with heatmap filter implemented. That could be possitivley improved by using more reliable car detections technique, such as choice of better feature vector, thresholding the decision function, hard negative mining etc.
-4. Although traditional Computer Vision pipeline for object detection works great in this project, more recently, Deep Neural Network designed for object detection such as [YOLO, Redmon et al., 2015. You Only Look Once: Unified, Real-Time Object Detection.](https://arxiv.org/abs/1506.02640) is trending. I would like to try it out in the future to compare the performance of the computer vision method.
+3. Majority of the time, the car detection is accurate, and false positives are miminum. There are still some false positive even with heatmap filter implemented. It could be possitivley improved by using more reliable car detections technique, such as choice of better feature vector, thresholding the decision function, hard negative mining etc.
+4. Another possible way to improve the accuracy is outside of the traditional computer vision for object detection. More recently, Deep Neural Network designed for object detection such as [YOLO, Redmon et al., 2015. You Only Look Once: Unified, Real-Time Object Detection.](https://arxiv.org/abs/1506.02640) is trending. I would like to practcie with it in the future to compare the performance of the computer vision method.
 
 
