@@ -14,11 +14,11 @@ The simulator provides the cross track error (CTE) to feed into PID controller t
 
 [//]: # (Image References)
 [image1]: ./PID_driving.gif "Car PID Driving Animation"
-[image2]: ./build/PID_tuning_Kp.png "Tuning Kp"
-[image3]: ./build/PID_tuning_Kd.png "Tuning Kd"
-[image4]: ./build/PID_tuning_Ki.png "Tuning Ki"
-[image5]: ./build/PID_tuning_Kd_2.png "Tuning Kd again"
-[image6]: ./build/PID_tuning_Kp_2.png "Tuning Kp again"
+[image2]: ./PID_tuning_Kp.png "Tuning Kp"
+[image3]: ./PID_tuning_Kd.png "Tuning Kd"
+[image4]: ./PID_tuning_Ki.png "Tuning Ki"
+[image5]: ./PID_tuning_Kd_2.png "Tuning Kd again"
+[image6]: ./PID_tuning_Kp_2.png "Tuning Kp again"
 
 
 PID controller Implementation
