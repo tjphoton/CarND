@@ -19,6 +19,9 @@ The simulator provides the cross track error (CTE) to feed into PID controller t
 [image4]: ./PID_tuning_Ki.png "Tuning Ki"
 [image5]: ./PID_tuning_Kd_2.png "Tuning Kd again"
 [image6]: ./PID_tuning_Kp_2.png "Tuning Kp again"
+[video1]: ./PID_driving..mp4 "Video"
+
+PID_driving.mp4
 
 
 PID controller Implementation
@@ -128,6 +131,6 @@ It is certain that a better performance might be achived with further tuning. Fo
 Simulation
 ---
 
-The video below shows the PID controller drives the vechile, with the tuned PID gains, successfully drives a lap around the track without leave the drivable portion of the track surface.
+The video below (downloadable at [video1] or click on image below for youtube vedio) shows the PID controller drives the vechile, with the tuned PID gains, successfully drives a lap around the track without leave the drivable portion of the track surface.
 
-[![PID Driving](./PID_thumbnail.png)](PID_driving.mp4 "Video Title")
+[![PID Driving](./PID_thumbnail.png)](https://youtu.be/vPnpu2z76kI "PID driving")
