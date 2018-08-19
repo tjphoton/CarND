@@ -133,4 +133,6 @@ Simulation
 
 The video below (downloadable at [mp4] or click on image below for youtube video) shows the PID controller drives the vehicle, with the tuned PID gains, successfully drives a lap around the track without leave the drivable portion of the track surface.
 
+The GIF at the beginning of this document is also extracted from this video.
+
 [![PID Driving](./PID_thumbnail.png)](https://youtu.be/vPnpu2z76kI "PID driving")
