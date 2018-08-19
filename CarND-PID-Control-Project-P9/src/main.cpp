@@ -1,5 +1,7 @@
 #include <uWS/uWS.h>
 #include <iostream>
+#include <fstream>
+#include <iomanip>
 #include "json.hpp"
 #include "PID.h"
 #include <math.h>
@@ -28,15 +30,26 @@ std::string hasData(std::string s) {
   return "";
 }
 
-int main()
+int main(int argc, char *argv[])
 {
   uWS::Hub h;
 
   PID pid;
   // TODO: Initialize the pid variable.
-  pid.Init(.001,.001,.001);
+  double init_Kp = atof(argv[1]);
+  double init_Ki = atof(argv[2]);
+  double init_Kd = atof(argv[3]);
+  pid.Init(init_Kp, init_Ki, init_Kd);
 
-  h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
+  std::string filename = argv[4];
+  std::ofstream csvfile;
+  csvfile.open(filename);
+  csvfile << std::setprecision(4) << std::fixed << init_Kp << "," << init_Ki << "," << init_Kd << std::endl;
+  csvfile << "time,error" << std::endl;
+
+  unsigned int time = 0;
+
+  h.onMessage([&pid, &time, &csvfile](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
     // The 2 signifies a websocket event
@@ -47,6 +60,9 @@ int main()
         auto j = json::parse(s);
         std::string event = j[0].get<std::string>();
         if (event == "telemetry") {
+
+          time++;
+
           // j[1] is the data JSON object
           double cte = std::stod(j[1]["cte"].get<std::string>());
           double speed = std::stod(j[1]["speed"].get<std::string>());
@@ -59,6 +75,9 @@ int main()
           * another PID controller to control the speed!
           */
 
+          std::cout << "Speed: " << speed << std::endl;
+          std::cout << "Angle: " << angle << std::endl;
+
           pid.UpdateError(cte);
           steer_value = - pid.TotalError();
 
@@ -68,7 +87,12 @@ int main()
             steer_value = - 1.0;
           
           // DEBUG
-          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+          std::cout << "Time: " << time << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+
+          if (time % 10 == 0) 
+            csvfile << time << "," << cte << std::endl;
+          if (time == 10000)
+            csvfile.close();
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
