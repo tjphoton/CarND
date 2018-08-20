@@ -111,7 +111,7 @@ Increasing Kd helps reduce overshot, but the ride is not smooth. At some points 
 
 Current best gain choice still at: Kp = 0.05, Kd = 10.0, Ki = 0.002.
 
-#### 5. 2nd Time Ki Tuning
+#### 5. 2nd Time Kp Tuning
 Re-iterated on Ki again. Keep Kd at 10.0, Ki at 0.002, vary Kp at 0, 0.050, 0.100, 0.200, 0.500,
 ![Kp Tuning again][image6] 
 
