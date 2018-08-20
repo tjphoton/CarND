@@ -21,8 +21,6 @@ The simulator provides the cross track error (CTE) to feed into PID controller t
 [image6]: ./PID_tuning_Kp_2.png "Tuning Kp again"
 [mp4]: ./PID_driving.mp4 "Video"
 
-PID_driving.mp4
-
 
 PID controller Implementation
 ---
