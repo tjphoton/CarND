@@ -1,6 +1,6 @@
 ## MPC Control Project (Udacity Self-Driving Car Engineer Nanodegree)
 
-Xinjie Qiu, September 16, 2018
+Xinjie Qiu, September 17, 2018
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
